@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse all Umrah & tour packages from TravelMate Holiday." />
+  <meta name="theme-color" content="#0d1f4f" />
+  <title>All Packages — TravelMate Holiday</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Nunito:wght@300;400;600;700;800&family=Dancing+Script:wght@600;700&family=Noto+Sans+Bengali:wght@400;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="./assets/css/hero.css" />
+  <link rel="stylesheet" href="./assets/css/packages.css" />
+  <link rel="stylesheet" href="./assets/css/gallery.css" />
+  <link rel="stylesheet" href="./assets/css/contact.css" />
+  <link rel="stylesheet" href="./assets/css/footer.css" />
+  <link rel="stylesheet" href="./assets/css/responsive.css" />
+
+  <link rel="icon" type="image/png" href="./assets/images/logo.png" />
+
+  <style>
+    /* ----- Page-specific styles for all-packages.html ----- */
+    .page-hero {
+      min-height: 56vh;
+      padding-top: calc(var(--navbar-h) + 40px);
+      padding-bottom: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-light);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    .page-hero .hero-bg {
+      background-image: url("https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=1920&q=80");
+    }
+    .page-hero .hero-overlay {
+      background: linear-gradient(to bottom, rgba(13,31,79,0.75), rgba(13,31,79,0.92));
+    }
+    .page-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+    .breadcrumb {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .breadcrumb a {
+      color: var(--accent-light);
+      transition: color var(--t-fast) var(--ease);
+    }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb .sep { margin: 0 8px; opacity: 0.6; }
+
+    .ap-section { padding: 64px 0 96px; background: var(--bg); }
+    .ap-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 2.4rem;
+    }
+    .all-packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header id="navbar" class="navbar" role="banner">
+    <div class="nav-container">
+      <a href="./index.html" class="nav-logo" aria-label="TravelMate Holiday home">
+        <div class="nav-logo-text">
+          <span class="logo-line1">TravelMate</span>
+          <span class="logo-line2">Holidays</span>
+          <span class="logo-tagline">✈ Drive UR Dream</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <ul>
+          <li><a href="./index.html#home" class="nav-link">Home</a></li>
+          <li><a href="./index.html#about" class="nav-link">About Us</a></li>
+          <li class="nav-dropdown">
+            <a href="./all-packages.html" class="nav-link active">All Packages <span class="caret">▾</span></a>
+            <ul class="dropdown-menu">
+              <li><a href="./all-packages.html#umrah"><span class="dd-icon">✈</span> Umrah Package</a></li>
+              <li><a href="./all-packages.html#tour"><span class="dd-icon">🌍</span> Tour Package</a></li>
+            </ul>
+          </li>
+          <li><a href="./index.html#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="./index.html#stories" class="nav-link">Success Stories</a></li>
+          <li><a href="./index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-right">
+        <div class="nav-contact">
+          <span>📞 +880 1XXX-XXXXXX</span>
+          <span>✉ info@travelmateholiday.com</span>
+        </div>
+        <div class="calendar-widget" id="calendarWidget" aria-live="polite">
+          <div class="cal-line cal-english">
+            <span class="cal-day" id="calDay">--</span>
+            <span class="cal-dayname" id="calDayName">--</span>
+          </div>
+          <div class="cal-line cal-month">
+            <span id="calMonthYear">-- ----</span>
+          </div>
+          <div class="cal-line cal-hijri" dir="rtl" id="calHijri">--</div>
+          <div class="cal-line cal-bangla" id="calBangla">--</div>
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <ul>
+        <li><a href="./index.html#home">Home</a></li>
+        <li><a href="./index.html#about">About Us</a></li>
+        <li><a href="./all-packages.html">All Packages</a></li>
+        <li><a href="./all-packages.html#umrah" class="sub">— Umrah Package</a></li>
+        <li><a href="./all-packages.html#tour" class="sub">— Tour Package</a></li>
+        <li><a href="./index.html#gallery">Gallery</a></li>
+        <li><a href="./index.html#stories">Success Stories</a></li>
+        <li><a href="./index.html#contact">Contact</a></li>
+      </ul>
+      <div class="mobile-calendar" id="mobileCalendar">
+        <span id="mobCalDay">--</span>
+        <span id="mobCalRest">-- ----</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= PAGE HERO ================= -->
+  <section class="page-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" style="padding-top:0;">
+      <span class="hero-label">✈ Our Catalogue</span>
+      <h1>All Packages</h1>
+      <p class="breadcrumb">
+        <a href="./index.html">Home</a>
+        <span class="sep">›</span>
+        <span>All Packages</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= ALL PACKAGES ================= -->
+  <section id="all-packages" class="ap-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">Browse</span>
+        <h2 class="section-title">Find Your Perfect Journey <span class="gold-underline"></span></h2>
+        <p class="section-sub">Filter by category and explore all our Umrah &amp; tour offerings.</p>
+      </div>
+
+      <div class="ap-filters" id="allPackagesFilters" role="tablist">
+        <button class="filter-btn active" data-filter="All" role="tab">All</button>
+        <button class="filter-btn" data-filter="Umrah" role="tab">Umrah</button>
+        <button class="filter-btn" data-filter="Tour" role="tab">Tour</button>
+      </div>
+
+      <div class="all-packages-grid" id="allPackagesGrid">
+        <!-- Populated by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PACKAGE DETAIL MODAL ================= -->
+  <div class="modal" id="packageModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal aria-label="Close modal">×</button>
+      <div id="packageModalBody"></div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="foot-col">
+        <img src="./assets/images/logo-footer.jpg" alt="TravelMate Holiday Logo" class="footer-logo" />
+        <p class="foot-desc">Your trusted partner for Umrah and international tours. Driving dreams since 2015.</p>
+        <div class="social">
+          <a href="https://facebook.com/travelmateholiday" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◉</a>
+          <a href="mailto:info@travelmateholiday.com" aria-label="Email">✉</a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./index.html#about">About Us</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund &amp; Cancellation</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="./index.html#contact">Get In Touch</a></li>
+          <li><a href="./index.html#contact">FAQ</a></li>
+          <li><a href="./all-packages.html">Book a Package</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Office Hours</h4>
+        <ul class="foot-info">
+          <li>📍 Dhaka, Bangladesh</li>
+          <li>📞 +880 1XXX-XXXXXX</li>
+          <li>✉ info@travelmateholiday.com</li>
+          <li>🕐 Sun–Thu: 9AM – 6PM</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 TravelMate Holiday. All Rights Reserved. &nbsp;|&nbsp; <span class="dev-credit">Developed by Md Arif Hossen 005</span></p>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="./assets/js/data.js"></script>
+  <script src="./assets/js/calendar.js"></script>
+  <script src="./assets/js/animations.js"></script>
+  <script src="./assets/js/app.js"></script>
+</body>
+</html>

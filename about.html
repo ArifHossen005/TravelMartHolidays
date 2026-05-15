@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About TravelMate Holiday — Our story, mission, and team." />
+  <title>About Us — TravelMate Holiday</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Nunito:wght@300;400;600;700;800&family=Dancing+Script:wght@600;700&family=Noto+Sans+Bengali:wght@400;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="./assets/css/hero.css" />
+  <link rel="stylesheet" href="./assets/css/footer.css" />
+  <link rel="stylesheet" href="./assets/css/responsive.css" />
+  <link rel="icon" type="image/png" href="./assets/images/logo.png" />
+
+  <style>
+    /* ===== About Page Styles ===== */
+    .page-hero {
+      min-height: 50vh;
+      padding-top: calc(var(--navbar-h) + 40px);
+      padding-bottom: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-light);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    .page-hero .hero-bg {
+      background-image: url("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80");
+    }
+    .page-hero .hero-overlay {
+      background: linear-gradient(to bottom, rgba(13,31,79,0.72), rgba(13,31,79,0.9));
+    }
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+    .breadcrumb {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .breadcrumb a { color: var(--accent-light); }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb .sep { margin: 0 8px; opacity: 0.5; }
+
+    /* ===== Story Section ===== */
+    .about-story {
+      padding: 90px 0;
+      background: var(--bg);
+    }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .story-img-main {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4/3;
+    }
+    .story-img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .story-badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: var(--gradient-gold);
+      color: var(--primary-dark);
+      padding: 14px 22px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.05rem;
+      box-shadow: var(--shadow-gold);
+    }
+    .story-text .section-title { display: block; text-align: left; }
+    .story-text p {
+      color: #4a5470;
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+    .story-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 2rem;
+    }
+    .s-stat {
+      text-align: center;
+      padding: 18px 10px;
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      border-top: 3px solid var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+    .s-stat .num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 900;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .s-stat .label {
+      font-size: 0.82rem;
+      color: #6b7689;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+
+    /* ===== Photo Gallery ===== */
+    .about-photos {
+      padding: 80px 0;
+      background: linear-gradient(180deg, #eef2f9 0%, var(--bg-alt) 100%);
+    }
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+    .photo-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+    }
+    .photo-card:first-child {
+      grid-column: span 2;
+    }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      object-fit: cover;
+      transition: transform var(--t-slow) var(--ease);
+      display: block;
+    }
+    .photo-card:hover img { transform: scale(1.07); }
+    .photo-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(13,31,79,0.85), transparent);
+      color: var(--text-light);
+      padding: 20px 16px 14px;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity var(--t-mid) var(--ease), transform var(--t-mid) var(--ease);
+    }
+    .photo-card:hover .photo-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Mission & Values ===== */
+    .about-mission {
+      padding: 80px 0;
+      background: var(--gradient-hero);
+      color: var(--text-light);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-mission::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top right, rgba(245,166,35,0.12), transparent 60%);
+      pointer-events: none;
+    }
+    .about-mission .section-title,
+    .about-mission .section-eyebrow { color: var(--text-light); }
+    .about-mission .section-eyebrow { color: var(--accent-light); }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 3rem;
+    }
+    .mission-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background var(--t-mid) var(--ease), transform var(--t-mid) var(--ease);
+    }
+    .mission-card:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-6px);
+    }
+    .mission-icon {
+      font-size: 2.6rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .mission-card h3 {
+      font-family: var(--font-display);
+      color: var(--accent-light);
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+    .mission-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ===== Why Choose Us ===== */
+    .about-why {
+      padding: 80px 0;
+      background: var(--bg);
+    }
+    .why-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 2.4rem;
+    }
+    .why-item {
+      display: flex;
+      gap: 18px;
+      padding: 22px;
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent);
+      box-shadow: var(--shadow-sm);
+      align-items: flex-start;
+      transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+    }
+    .why-item:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-md);
+    }
+    .why-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .why-item h4 {
+      font-family: var(--font-display);
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+    }
+    .why-item p {
+      color: #5a6680;
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .about-cta-section {
+      padding: 60px 0;
+      text-align: center;
+      background: linear-gradient(135deg, #eef2f9, var(--bg-alt));
+    }
+    .about-cta-section h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+    }
+    .about-cta-section p {
+      color: #5a6680;
+      margin-bottom: 1.6rem;
+    }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-btns .btn-ghost {
+      color: var(--primary-dark);
+      border-color: var(--primary);
+    }
+    .cta-btns .btn-ghost:hover {
+      background: var(--primary);
+      color: var(--text-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .story-grid, .photos-grid { grid-template-columns: 1fr; }
+      .photo-card:first-child { grid-column: span 1; }
+      .mission-grid { grid-template-columns: 1fr; gap: 16px; }
+      .why-list { grid-template-columns: 1fr; }
+      .story-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .story-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header id="navbar" class="navbar" role="banner">
+    <div class="nav-container">
+      <a href="./index.html" class="nav-logo" aria-label="TravelMate Holiday home">
+        <div class="nav-logo-text">
+          <span class="logo-line1">TravelMate</span>
+          <span class="logo-line2">Holidays</span>
+          <span class="logo-tagline">✈ Drive UR Dream</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <ul>
+          <li><a href="./index.html#home" class="nav-link">Home</a></li>
+          <li><a href="./about.html" class="nav-link active">About Us</a></li>
+          <li class="nav-dropdown">
+            <a href="./all-packages.html" class="nav-link">All Packages <span class="caret">▾</span></a>
+            <ul class="dropdown-menu">
+              <li><a href="./all-packages.html#umrah"><span class="dd-icon">✈</span> Umrah Package</a></li>
+              <li><a href="./all-packages.html#tour"><span class="dd-icon">🌍</span> Tour Package</a></li>
+            </ul>
+          </li>
+          <li><a href="./index.html#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="./index.html#stories" class="nav-link">Success Stories</a></li>
+          <li><a href="./index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <div class="nav-contact">
+          <span>📞 +880 1XXX-XXXXXX</span>
+          <span>✉ info@travelmateholiday.com</span>
+        </div>
+        <div class="calendar-widget" id="calendarWidget">
+          <div class="cal-line cal-english">
+            <span class="cal-day" id="calDay">--</span>
+            <span class="cal-dayname" id="calDayName">--</span>
+          </div>
+          <div class="cal-line cal-month"><span id="calMonthYear">-- ----</span></div>
+          <div class="cal-line cal-hijri" dir="rtl" id="calHijri">--</div>
+          <div class="cal-line cal-bangla" id="calBangla">--</div>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <ul>
+        <li><a href="./index.html#home">Home</a></li>
+        <li><a href="./about.html">About Us</a></li>
+        <li><a href="./all-packages.html">All Packages</a></li>
+        <li><a href="./all-packages.html#umrah" class="sub">— Umrah Package</a></li>
+        <li><a href="./all-packages.html#tour" class="sub">— Tour Package</a></li>
+        <li><a href="./index.html#gallery">Gallery</a></li>
+        <li><a href="./index.html#stories">Success Stories</a></li>
+        <li><a href="./index.html#contact">Contact</a></li>
+      </ul>
+      <div class="mobile-calendar" id="mobileCalendar">
+        <span id="mobCalDay">--</span>
+        <span id="mobCalRest">-- ----</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" style="padding-top:0;">
+      <span class="hero-label">✈ Who We Are</span>
+      <h1>About TravelMate Holiday</h1>
+      <p class="breadcrumb">
+        <a href="./index.html">Home</a>
+        <span class="sep">›</span>
+        <span>About Us</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== OUR STORY ===== -->
+  <section class="about-story animate-on-scroll">
+    <div class="container story-grid">
+      <div class="story-img-main">
+        <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=900&q=80" alt="Masjid Al-Haram — Umrah journey" />
+        <div class="story-badge">Since 2015 ✨</div>
+      </div>
+      <div class="story-text">
+        <span class="section-eyebrow">Our Story</span>
+        <h2 class="section-title">A Decade of Dreams Delivered</h2>
+        <p>Founded in 2015 in Dhaka, TravelMate Holiday started with one simple mission — to make spiritual and leisure travel accessible, organized, and truly memorable for Bangladeshis.</p>
+        <p>What began as a small Umrah operator has grown into a full-service travel agency handling Umrah packages, international tours across Asia and the Middle East, and curated domestic experiences.</p>
+        <p>Over the years, we have served hundreds of families, groups, and solo travelers — earning their trust through transparent pricing, dedicated support, and seamless end-to-end service.</p>
+        <div class="story-stats">
+          <div class="s-stat"><div class="num">500+</div><div class="label">Happy Travelers</div></div>
+          <div class="s-stat"><div class="num">50+</div><div class="label">Destinations</div></div>
+          <div class="s-stat"><div class="num">10+</div><div class="label">Years Experience</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PHOTO GALLERY ===== -->
+  <section class="about-photos animate-on-scroll">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">Our Journey</span>
+        <h2 class="section-title">Moments We've Shared <span class="gold-underline"></span></h2>
+        <p class="section-sub">From the Holy Haram to the beaches of Phuket — every journey matters.</p>
+      </div>
+      <div class="photos-grid">
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=900&q=80" alt="Umrah pilgrims at Masjid Al-Haram" loading="lazy" />
+          <div class="photo-label">Masjid Al-Haram, Makkah</div>
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=600&q=80" alt="Masjid Nabawi golden hour" loading="lazy" />
+          <div class="photo-label">Madinah Al-Munawwarah</div>
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=700&q=80" alt="Thailand Phuket tour" loading="lazy" />
+          <div class="photo-label">Phuket, Thailand</div>
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=700&q=80" alt="Dubai Burj Khalifa" loading="lazy" />
+          <div class="photo-label">Dubai, UAE</div>
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=700&q=80" alt="Petronas Twin Towers KL" loading="lazy" />
+          <div class="photo-label">Kuala Lumpur, Malaysia</div>
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?w=700&q=80" alt="Istanbul Hagia Sophia" loading="lazy" />
+          <div class="photo-label">Istanbul, Turkey</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MISSION & VALUES ===== -->
+  <section class="about-mission animate-on-scroll">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">What Drives Us</span>
+        <h2 class="section-title">Our Mission & Values <span class="gold-underline"></span></h2>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-card">
+          <span class="mission-icon">🕌</span>
+          <h3>Spiritual Excellence</h3>
+          <p>We treat Umrah journeys with the reverence they deserve — guiding pilgrims with care, knowledge, and respect for ibadah.</p>
+        </div>
+        <div class="mission-card">
+          <span class="mission-icon">🤝</span>
+          <h3>Trust & Transparency</h3>
+          <p>No hidden costs, no broken promises. Our pricing is clear and our service is exactly what we commit to from day one.</p>
+        </div>
+        <div class="mission-card">
+          <span class="mission-icon">🌟</span>
+          <h3>Unforgettable Experiences</h3>
+          <p>Whether it's a desert safari in Dubai or a Cappadocia balloon ride — we craft moments that stay with you forever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE US ===== -->
+  <section class="about-why animate-on-scroll">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">Why Us</span>
+        <h2 class="section-title">Why Choose TravelMate Holiday <span class="gold-underline"></span></h2>
+      </div>
+      <div class="why-list">
+        <div class="why-item">
+          <span class="why-icon">✅</span>
+          <div>
+            <h4>Licensed & Certified</h4>
+            <p>Fully registered travel agency in Bangladesh with all government approvals for Umrah and international tour operations.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">🌍</span>
+          <div>
+            <h4>50+ Destinations</h4>
+            <p>From Saudi Arabia to Thailand, Malaysia, Dubai, Turkey, Cox's Bazar and beyond — we cover the routes that matter most.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">💼</span>
+          <div>
+            <h4>End-to-End Support</h4>
+            <p>Visa processing, hotel booking, airport pickups, guided tours — we handle every detail so you don't have to.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">🇧🇩</span>
+          <div>
+            <h4>Bangladeshi Team</h4>
+            <p>Our guides and support staff understand Bangladeshi travelers — language, dietary preferences, and cultural needs.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">💰</span>
+          <div>
+            <h4>Competitive Pricing</h4>
+            <p>We offer premium experiences at fair prices, with economy, mid-range, and luxury options to suit every budget.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">⭐</span>
+          <div>
+            <h4>100% Satisfaction</h4>
+            <p>Our repeat traveler rate speaks for itself. Most of our clients come back — and bring their families.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="about-cta-section">
+    <div class="container">
+      <h2>Ready to Plan Your Next Journey?</h2>
+      <p>Browse our packages or get in touch — we'd love to make your dream trip a reality.</p>
+      <div class="cta-btns">
+        <a href="./all-packages.html" class="btn btn-gold">View All Packages →</a>
+        <a href="./index.html#contact" class="btn btn-ghost">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="foot-col">
+        <img src="./assets/images/logo-footer.jpg" alt="TravelMate Holiday Logo" class="footer-logo" />
+        <p class="foot-desc">Your trusted partner for Umrah and international tours. Driving dreams since 2015.</p>
+        <div class="social">
+          <a href="https://facebook.com/travelmateholiday" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◉</a>
+          <a href="mailto:info@travelmateholiday.com" aria-label="Email">✉</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund &amp; Cancellation</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="./index.html#contact">Get In Touch</a></li>
+          <li><a href="./index.html#contact">FAQ</a></li>
+          <li><a href="./all-packages.html">Book a Package</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Office Hours</h4>
+        <ul class="foot-info">
+          <li>📍 Dhaka, Bangladesh</li>
+          <li>📞 +880 1XXX-XXXXXX</li>
+          <li>✉ info@travelmateholiday.com</li>
+          <li>🕐 Sun–Thu: 9AM – 6PM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TravelMate Holiday. All Rights Reserved. &nbsp;|&nbsp; <span class="dev-credit">Developed by Md Arif Hossen 005</span></p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="./assets/js/data.js"></script>
+  <script src="./assets/js/calendar.js"></script>
+  <script src="./assets/js/animations.js"></script>
+</body>
+</html>
